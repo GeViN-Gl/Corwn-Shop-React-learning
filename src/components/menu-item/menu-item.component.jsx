@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate, useResolvedPath } from "react-router-dom";
 import "./menu-item.styles.scss";
 
-const MenuItem = ({ title, imageUrl, size }) => {
+const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
+  const navigate = useNavigate();
+  let resolvedPath = useResolvedPath(linkUrl);
   return (
     <figure className={`${size} menu-item`}>
       <div
+        onClick={() => {
+          navigate(resolvedPath);
+          console.log(resolvedPath)
+        }}
         className="background-image"
         style={{
           backgroundImage: `url(${imageUrl})`,
