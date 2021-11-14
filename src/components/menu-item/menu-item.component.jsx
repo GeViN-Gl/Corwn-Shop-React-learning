@@ -10,7 +10,10 @@ const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
       <div
         onClick={() => {
           navigate(resolvedPath);
-          console.log(resolvedPath)
+          console.log(
+            `Hi, i'm resolvedPath, and i return "to" obj for navigate: `,
+            resolvedPath
+          );
         }}
         className="background-image"
         style={{

@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  //This defines 1rem
+  font-size: 62.5%; //1rem = 10px
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Open Sans Condensed", sans-serif;
+
+  padding: 2rem 8rem;
+}
