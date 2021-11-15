@@ -1,0 +1,22 @@
+.sign-in {
+  width: 38rem;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    font-size: 2.6rem;
+  }
+
+  &__subheader {
+    font-size: 1.8rem;
+  }
+
+  .title {
+    margin: 1rem 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

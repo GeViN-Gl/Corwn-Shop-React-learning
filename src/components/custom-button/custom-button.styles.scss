@@ -1,0 +1,38 @@
+$google-blue: #4285f4;
+$google-blue-dark: #357ae8;
+
+$color-white: #fff;
+$color-black: #000;
+
+.custom-button {
+  min-width: 16.5rem;
+  width: auto;
+  height: 5rem;
+  letter-spacing: 0.5px;
+  line-height: 5rem;
+  padding: 0 3.5rem 0 3.5rem;
+  font-size: 1.5rem;
+  background-color: $color-black;
+  color: $color-white;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: $color-black;
+    border: 1px solid $color-black;
+  }
+
+  &.google-sign-in {
+    background-color: $google-blue;
+    color: $color-white;
+
+    &:hover {
+      background-color: $google-blue-dark;
+      border: none;
+    }
+  }
+}
