@@ -40,12 +40,11 @@ class App extends Component {
                 id: snapShot.id,
                 ...snapShot.data(), // .data() returns object with all data from db, so put all it in state
               },
-            }
-            /* ,
+            },
             () => {
               //must leave here as notice, setState is async, to fire fn AFTER setstate complete must use callback as second arg
               console.log(this.state);
-            } */
+            }
           );
         });
       }
