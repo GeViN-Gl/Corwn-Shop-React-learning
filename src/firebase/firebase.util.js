@@ -23,11 +23,17 @@ const config = {
   measurementId: "G-VKEWDXCQ77",
 };
 
-/**
- * Creates new User document in Firebase db if such user doesn't exist in our db
- * @param {Object} userAuth Object created by firebase.auth() to identify user
+/**Creates new User document in Firebase db if such user doesn't exist in our db
+ *
+ * Принимает
+ * @param {Object} userAuth объект передаваемый firebase.auth()
  * @param {Object | Object[]} additionalData Any additional data to pass in to base
- * @returns {Object} userRef object from firestorm query
+ * @returns {Object} userRef ( userAuth referense object ) from query to firestorm database
+ *
+ * The queryReference object does not have the actual data of the collection or document.
+ *
+ * It instead has properties that tell us details about it, and methods.
+ * e.g. to get the Snapshot object which gives us the data we may looking for.
  */
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return; //if there is no Authed user, variable == null , do nothing
@@ -71,6 +77,10 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ promt: "select_account" });
 
+/** Эта функция будет обеспечивать вызов попапа для идетификации пользователя
+ *
+ * @returns Нужно помнить что функция нам ничего сейчас не вернет (кроме ошибки) но при успешной идентификации мы сможем спрашивать у auth кто сейчас залогинен и залогинен ли вообще
+ */
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
