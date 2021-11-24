@@ -7,13 +7,16 @@ import { auth } from "../../firebase/firebase.util"; //we still need auth to sig
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import "./header.styles.scss";
 
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../card-dropdown/cart-dropdown.component";
+
 /**
  *
  * @param {Object} currentUser
  * @returns
  */
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   //curentUser from auth in null if there is no auth
   return (
     <div className="header">
@@ -36,7 +39,9 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </nav>
+      {!hidden && <CartDropdown />}
     </div>
   );
 };
@@ -54,8 +59,10 @@ const Header = ({ currentUser }) => {
  *
  */
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+//nested destructure from state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);
