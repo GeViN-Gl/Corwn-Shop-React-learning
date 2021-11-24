@@ -1,3 +1,5 @@
+import { UserActionTypes } from "./user.types";
+
 const INITIAL_STATE = {
   currentUser: null, //base state for user
 }; // NOTE defaul value in func fires on udefined, null actually a value
@@ -12,7 +14,7 @@ const INITIAL_STATE = {
  */
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "SET_CURRENT_USER":
+    case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,

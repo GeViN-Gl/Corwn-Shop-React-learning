@@ -1,3 +1,5 @@
+import { UserActionTypes } from "./user.types";
+
 /**Transform user object in correct format for corresponding reducer fuction
  *
  * @param {Object|null} user Any state of user object that we created, can be user from firebase.auth, snapshot, logof or null
@@ -6,6 +8,6 @@
  */
 
 export const setCurrentUser = (user) => ({
-  type: "SET_CURRENT_USER",
+  type: UserActionTypes.SET_CURRENT_USER,
   payload: user,
 });

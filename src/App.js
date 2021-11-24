@@ -142,5 +142,18 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
+// Redux подписка на user-slice part of State
+// С точки зрения удобоваримости при обучении лучше писать
+// const mapStateToProps =(state) => {
+//   currentUser: state.user.currentUser
+// }
+// Но идея всё та же, connect() подписывает на App на возможность доступа к State as props
+// так же я постоянно меняю круглые скобуки в стрелочных функциях на явное указание return
+// я не знаю кто и зачем придумал писать стрелочки как () => () но читать такой код тяжело
+
+const mapStateToProps = ({ user }) => {
+  return { currentUser: user.currentUser };
+};
+
 //We dont need to read from state, so we omit firs argument in connect
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
