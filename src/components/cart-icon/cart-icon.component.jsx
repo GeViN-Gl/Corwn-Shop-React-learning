@@ -6,19 +6,31 @@ import React from "react";
 
 //redux
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const CartIcon = ({ toggleCartHidden }) => {
+const CartIcon = () => {
+  //redo with hooks, lecture 124
+  const dispatch = useDispatch();
+  // useDispatch возвращает (подписывает) референс на dispatch() in Redux Store
+  // После начинается дом который построил Джек
+  // onClick вызывает dispath() который определен useDispath from react-redux
+  // dispatch потребляет обект который выдается cart.action.js который соответствующий тип берет в cart.types
+  //
+  // реально это выглядит как onClick({()=>dispath({type: "TOGGLE_CART_HIDDEN"})})
+
   return (
-    <div className="cart-icon" onClick={toggleCartHidden}>
+    <div className="cart-icon" onClick={() => dispatch(toggleCartHidden())}>
+      {/*<div className="cart-icon" onClick={toggleCartHidden}>  //connect version  */}
       <ShoppingIcon className="shopping-icon" />
       <span className="item-count">0</span>
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
-});
+// connect version
+// const mapDispatchToProps = (dispatch) => ({
+//   toggleCartHidden: () => dispatch(toggleCartHidden()),
+// });
+// export default connect(null, mapDispatchToProps)(CartIcon);
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+export default CartIcon;
