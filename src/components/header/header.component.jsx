@@ -8,7 +8,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import "./header.styles.scss";
 
 import CartIcon from "../cart-icon/cart-icon.component";
-import CartDropdown from "../card-dropdown/cart-dropdown.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 /**
  *
