@@ -14,8 +14,9 @@ const CartIcon = () => {
   // useDispatch возвращает (подписывает) референс на dispatch() in Redux Store
   // После начинается дом который построил Джек
   // onClick вызывает dispath() который определен useDispath from react-redux
-  // dispatch потребляет обект который выдается cart.action.js который соответствующий тип берет в cart.types
+  // dispatch потребляет объект который выдается cart.action.js который соответствующий тип берет в cart.types
   //
+  // IMHO too much nesting if file structure
   // реально это выглядит как onClick({()=>dispath({type: "TOGGLE_CART_HIDDEN"})})
 
   return (
