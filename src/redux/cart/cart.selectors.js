@@ -18,6 +18,8 @@ const selectCart = (state) => state.cart;
 
 export const selectCartItems = createSelector([selectCart], (cart) => cart.cartItems);
 
+export const selectCartHidden = createSelector([selectCart], (cart) => cart.hidden);
+
 /** (My selector) from "reselect";
  * @argument {object} State from redux global State
  * @returns Summarize all state.cart.cartItems.quantity

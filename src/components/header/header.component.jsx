@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//redux
 import { connect } from "react-redux"; // high order func
+//reselect
+import { createStructuredSelector } from "reselect";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { auth } from "../../firebase/firebase.util"; //we still need auth to signout curren user
 import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -59,10 +64,19 @@ const Header = ({ currentUser, hidden }) => {
  *
  */
 
-//nested destructure from state.user.currentUser
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+/* before reselector
+// nested destructure from state.user.currentUser 
+
+ const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+   currentUser,
+   hidden,
+ });
+ */
+// with reselctor
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);

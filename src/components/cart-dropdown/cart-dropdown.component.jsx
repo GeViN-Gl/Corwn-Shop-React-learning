@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 
 const CartDropdown = () => {
+  // let leave it here as is, but useSelector() is redundant with useSelector hook
+  // Should be const cartItems = useSelector(state => state.cart.cartItems)
   const cartItems = selectCartItems(useSelector((state) => state));
 
   return (

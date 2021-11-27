@@ -20,6 +20,10 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.util";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions"; //to pass into dispatch
 
+//Reselect
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/user.selectors";
+
 class App extends Component {
   unsubscribeFromAuth = null;
 
@@ -154,9 +158,9 @@ const mapDispatchToProps = (dispatch) => ({
 // так же я постоянно меняю круглые скобуки в стрелочных функциях на явное указание return
 // я не знаю кто и зачем придумал писать стрелочки как () => () но читать такой код тяжело
 
-const mapStateToProps = ({ user }) => {
-  return { currentUser: user.currentUser };
-};
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
 
 //We dont need to read from state, so we omit firs argument in connect
 export default connect(mapStateToProps, mapDispatchToProps)(App);
