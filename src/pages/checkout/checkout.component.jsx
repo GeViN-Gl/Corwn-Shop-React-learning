@@ -16,9 +16,9 @@ const Checkout = () => {
   // funny
 
   const cartItems = useSelector(selectCartItems);
-  console.log("😀", cartItems);
+  // console.log("😀", cartItems);
   const cartItemsTotal = useSelector(selectCartTotal);
-  console.log("😆", cartItemsTotal);
+  // console.log("😆", cartItemsTotal);
 
   return (
     <section className="checkout-page">
