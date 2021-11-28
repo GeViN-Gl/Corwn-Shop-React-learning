@@ -20,13 +20,8 @@ const CartIcon = () => {
   //   0
   // );
 
-  // Here reselect also redundant, (see lecture 135-06:58)
-  // must be
-  // const cartItems = useSelector((state) => state.cart.cartItems);
-  // const itemCount = cartItems.reduce((accum, item) => (accum += item.quantity), 0);
-  // or
-  // const itemCount = useSelector((state) => state.cart.cartItems).reduce((accum, item) => (accum += item.quantity), 0)
-  const itemCount = selectCartItemsCount(useSelector((state) => state));
+  // reselect with redux hook
+  const itemCount = useSelector(selectCartItemsCount);
 
   // useDispatch возвращает (подписывает) референс на dispatch() in Redux Store
   // После начинается дом который построил Джек

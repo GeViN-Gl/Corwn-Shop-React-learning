@@ -12,6 +12,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSigUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Checkout from "./pages/checkout/checkout.component";
 
 // Firebase methods
 import { auth, createUserProfileDocument } from "./firebase/firebase.util";
@@ -29,7 +30,7 @@ class App extends Component {
 
   // all fancy thigs we do as soon as we know that component exist on page
   componentDidMount() {
-    // onAuthStateChanged return firebase.unsubscribe, adn we can call it to signout user
+    // onAuthStateChanged return firebase.unsubscribe, and we can call it to signout user
     // also callback of auth must be async as createUserProfile is async fuction and will return promise
 
     // Именно здесь мы получаем объект userAuth т.е. пользователя прошедшего авторизацию
@@ -47,9 +48,9 @@ class App extends Component {
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       // Тут сложный вызов с гвардом потом
-      // Если принятый от firebase.auth userAuth not null мы вызовом createUserProfileDocument либо создадим новую запись в базе
+      // Если принятый от firebase.auth userAuth !== null мы вызовом createUserProfileDocument либо создадим новую запись в базе
       // либо обратимся к уже существующей
-      // но если auth() вернет userAuth = null нам надо передать это в state что будет сделано в else этого if
+      // но если auth() вернет userAuth === null нам надо передать это в state что будет сделано в else этого if
 
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -116,6 +117,7 @@ class App extends Component {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/shop" element={<ShopPage />}></Route>
           <Route path="/signin" element={<SignInAndSigUpPage />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
         </Routes>
       </div>
     );
