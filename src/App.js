@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 
 // Router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 // Styles
 import "./App.scss";
@@ -109,16 +109,22 @@ class App extends Component {
   render() {
     //1. Header, 2do: it actually a navigation bar so covert to nav
     //2. Routes, when converted from reactroute v5 to v6 <SWITCH> becomes <ROUTES>, and many other changes
-    //3. send down state with currentUser
+    //3. DONE hooks+redux+reselect (X)(TODO send down state with currentUser)
     return (
       <div>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/shop" element={<ShopPage />}></Route>
-          <Route path="/signin" element={<SignInAndSigUpPage />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop/*" element={<ShopPage />} />
+          {/* MEMO You'll only need the trailing * when there is another <Routes> somewhere in that route's descendant tree. 
+            In that case, the descendant <Routes> will match on the portion of the pathname that remains */}
+          <Route path="/signin" element={<SignInAndSigUpPage />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
+        {/* An <Outlet> renders whatever child route is currently active,
+            so you can think about this <Outlet> as a placeholder for
+            the child routes we defined above. */}
+        <Outlet />
       </div>
     );
   }
