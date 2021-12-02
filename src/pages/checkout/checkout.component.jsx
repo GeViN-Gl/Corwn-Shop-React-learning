@@ -8,6 +8,9 @@ import { selectCartItems, selectCartTotal } from "../../redux/cart/cart.selector
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
+//STRIPE
+import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
+
 const Checkout = () => {
   //TODO lecture 137 convert from flex to grid then Name to BEM
   // using memoiz is simple,
@@ -45,6 +48,12 @@ const Checkout = () => {
 
       <div className="total">
         <span>TOTAL: ${cartItemsTotal}</span>
+      </div>
+      <StripeCheckoutButton price={cartItemsTotal} />
+      <div className="test-warning">
+        *Please use the following test credit card for payment
+        <br />
+        4242 4242 4242 4242 EXP: 01/23 CVC: 123
       </div>
     </section>
   );
