@@ -5,8 +5,8 @@ import "./menu-item.styles.scss";
 const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   const navigate = useNavigate();
   let resolvedPath = useResolvedPath(linkUrl);
-  console.log(resolvedPath);
-  console.log(title, imageUrl, size, linkUrl);
+  // console.log(resolvedPath);
+  // console.log(title, imageUrl, size, linkUrl);
   return (
     <figure
       onClick={() => {

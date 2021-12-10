@@ -6,7 +6,12 @@ import { persistStore } from "redux-persist";
 
 import rootReducer from "./root-reducer";
 
-const middlewares = [logger];
+const middlewares = [];
+
+//for dev only logger
+if (process.env.NODE_ENV === "development") {
+  middlewares.push(logger);
+}
 
 // crateStore want from us all reducer (come from rootReducer into which we import reducers-slices)
 // and all middleware whitc we well spread from array defined earlyer
