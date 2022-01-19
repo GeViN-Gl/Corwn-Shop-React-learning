@@ -1,4 +1,3 @@
-import "./cart-dropdown.styles.scss";
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 
@@ -15,6 +14,13 @@ import { useNavigate, useResolvedPath } from "react-router-dom";
 //actions
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
+//css in js
+import {
+  CartDropdownContainer,
+  CartItemsContainer,
+  EmptyMessageContainer,
+} from "./cart-dropdown.styles";
+
 const CartDropdown = () => {
   // reselect with redux hooks
   //
@@ -26,8 +32,8 @@ const CartDropdown = () => {
   let toCheckoutResolvedPath = useResolvedPath("/checkout");
 
   return (
-    <section className="cart-dropdown">
-      <div className="cart-items">
+    <CartDropdownContainer>
+      <CartItemsContainer>
         {
           // show no goods in cart message if cartItems[].length ===0
           cartItems.length ? (
@@ -35,10 +41,10 @@ const CartDropdown = () => {
               return <CartItem key={cartItem.id} item={cartItem} />;
             })
           ) : (
-            <span className="empty-message">Your cart is empty</span>
+            <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
           )
         }
-      </div>
+      </CartItemsContainer>
       <CustomButton
         onClick={() => {
           // console.log(
@@ -53,7 +59,7 @@ const CartDropdown = () => {
       >
         GO TO CHECKOUT
       </CustomButton>
-    </section>
+    </CartDropdownContainer>
   );
 };
 

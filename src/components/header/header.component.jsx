@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+// import { Link } from "react-router-dom";
+//
 //redux
 import { connect } from "react-redux"; // high order func
 //reselect
@@ -10,10 +10,16 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { auth } from "../../firebase/firebase.util"; //we still need auth to signout curren user
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import "./header.styles.scss";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  OptionLink,
+} from "./header.styles";
 
 /**
  *
@@ -24,30 +30,24 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 const Header = ({ currentUser, hidden }) => {
   //curentUser from auth in null if there is no auth
   return (
-    <div className="header">
-      <Link className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <nav className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/shop">
-          CONTACT
-        </Link>
+      </LogoContainer>
+      <OptionsContainer>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/shop">CONTACT</OptionLink>
         {currentUser ? ( //onAuthStateChanged return null is there are errors or no sign in
-          <div className="option" onClick={() => auth.signOut()}>
+          <OptionLink as="div" onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </OptionLink>
         ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
+          <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
         <CartIcon />
-      </nav>
+      </OptionsContainer>
       {!hidden && <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 
